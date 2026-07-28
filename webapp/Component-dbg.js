@@ -121,12 +121,12 @@ sap.ui.define([
 			oCustomerModel.setProperty("/paymentTerm", data.PaymentTermsCode);
 			oCustomerModel.setProperty("/purchaseOrderRequired", data.Katr1);
 			//PCI Complaince Changes starts
-			oCustomerModel.setProperty("/IsPCIActive", data.IsPCIActive);
+			oCustomerModel.setProperty("/IsPCIActive", data.IsPCIActive === true || data.IsPCIActive === "true");
 			//oCustomerModel.setProperty("/IsPCIActive", false);
-			oCustomerModel.setProperty("/IsCreditCardFeeActive", data.IsCreditCardFeeActive);
-			oCustomerModel.setProperty("/CCExpiryValidation", data.CCExpiryValidation);
+			oCustomerModel.setProperty("/IsCreditCardFeeActive", data.IsCreditCardFeeActive === true || data.IsCreditCardFeeActive === "true");
+			oCustomerModel.setProperty("/CCExpiryValidation", data.CCExpiryValidation === true || data.CCExpiryValidation === "true");
 			oCustomerModel.setProperty("/SecurecoMerchantId", data.SecurecoMerchantId);
-			oCustomerModel.setProperty("/IsAMEXAllowed", data.IsAMEXAllowed);
+			oCustomerModel.setProperty("/IsAMEXAllowed", data.IsAMEXAllowed === true || data.IsAMEXAllowed === "true");
 			//PCI Complaince Changes ends
 
 			var cartHeaderModel = this.getModel("cartHeaderModel");
