@@ -42,7 +42,7 @@ sap.ui.define([
 					catalogueModel.setProperty("/isOrderListVisible", false);
 					setTimeout(function() {	//Neo to Cloud Migration Change by FAIR
 						this.updateDefaultProductImage();
-					});
+					}.bind(this));
 					
 					break;
 				case "Orders":
@@ -173,7 +173,7 @@ sap.ui.define([
 			}
 			setTimeout(function() {	//Neo to Cloud Migration Change by FAIR
 				this.oPopover.openBy(this.selectedItem);
-			});
+			}.bind(this));
 		},
 		addToCartBeforeClose: function() {
 			this.productItemEvent.getParameter("listItem").setSelected(false);

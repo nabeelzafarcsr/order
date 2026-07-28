@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
 	<Dialog id="SecureCoPaymentDialog" title="{i18n>secureCoPaymentTitle}" contentWidth="40%" draggable="true" class="no-gap-dialog">
-		<Wizard id="secureCoPaymentWizard" navigation="false" showNextButton="false" renderMode="Scroll">
+		<Wizard id="secureCoPaymentWizard" showNextButton="false" renderMode="Scroll">
 			<WizardStep id="amountStep" title="Amount" activate="onActivateAmountStep">
 				<content>
 					<core:Fragment id="CreditCardFeeFragment" fragmentName="com.csr.order.view.fragment.CreditCardFee" type="XML"/>

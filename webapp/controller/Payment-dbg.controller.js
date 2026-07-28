@@ -1268,6 +1268,7 @@ sap.ui.define([
 				});
 		},
 		triggerReceipt: function (documentNo, orderMsg) {
+			var oThis = this;
 			var oViewModel = this.getView().getModel("paymentViewModel");
 			var isPrintReceiptSelected = oViewModel.getProperty("/PrintReceipt");
 			var isEmailSelected = oViewModel.getProperty("/EmailReceipt");
@@ -1288,6 +1289,7 @@ sap.ui.define([
 			}
 
 			var oModel = this.getModel();
+			oModel.setUseBatch(false);
 			oModel.callFunction(
 				"/PrintL", {
 					method: "POST",
@@ -1299,18 +1301,26 @@ sap.ui.define([
 					},
 					success: function (data) {
 						oViewModel.setProperty("/busy", false);
+						oThis._navigateAfterReceipt(orderMsg);
 					},
 					error: function (error) {
 						oViewModel.setProperty("/busy", false);
-						var errorResponse = JSON.parse(error.responseText);
-						var errorMessage = errorResponse.error.message.value;
-						sap.m.MessageToast.show(
-							errorMessage, {
-								duration: 6000
-							});
+						try {
+							var errorResponse = JSON.parse(error.responseText);
+							var errorMessage = errorResponse.error.message.value;
+							sap.m.MessageToast.show(
+								errorMessage, {
+									duration: 6000
+								});
+						} catch (e) {
+							// response may not be valid JSON
+						}
+						oThis._navigateAfterReceipt(orderMsg);
 					}
 				}
 			);
+		},
+		_navigateAfterReceipt: function (orderMsg) {
 			if (this.getOwnerComponent().getModel("customerCockpitModel").getProperty("/receivePaymentOrder") !== "") {
 				sap.m.MessageToast.show(
 					orderMsg, {
@@ -1331,12 +1341,7 @@ sap.ui.define([
 				});
 			var oModel = this.getModel();
 			oModel.setUseBatch(true);
-			var sUrlLoc = window.location;
-			var appTile = "#order-Display";
-			var sReDirUrl = sUrlLoc.origin + sUrlLoc.pathname + appTile;
-			sap.m.URLHelper.redirect(sReDirUrl);
-
-			//this.getOwnerComponent().getRouter().navTo("Home", null, true);
+			this.getOwnerComponent().getRouter().navTo("Home", null, true);
 		},
 
 		onNavBack: function () {
@@ -1418,7 +1423,7 @@ sap.ui.define([
 
 		fnCreateEntity: function (oModel, sPath, oPost) {
 			var oKey = {};
-			oModel.setUseBatch = false;
+			oModel.setUseBatch(false);
 			return new Promise(function (resolve, reject) {
 				oModel.create(sPath, oPost, {
 					success: function (oData, oResponse) {
