@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPOSITIVE_SECURECO_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Purchase" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CrNumber"/>
+                    <PropertyRef Name="SessionId"/>
+                    <PropertyRef Name="EndPoint"/>
+                </Key>
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Session ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndPoint" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="End Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RequestedAmount" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Requested Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SurchargeAmount" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Surcharge Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MerchantAccountId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Merchant ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RequestId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Request ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EntryMode" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Entry Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Order Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PaymentMethod" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Payment Method" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="First Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Last Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExpiryMonth" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExpiryYear" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Expiry Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsSuccess" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Boolean Variable (X=True, -=False, Space=Unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TransactionId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Transaction ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TransactionReceipt" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Transaction Receipt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProviderTransactionId" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ProviderTransaction ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CreditCardFee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Amount"/>
+                    <PropertyRef Name="SalesOrg"/>
+                    <PropertyRef Name="CreditCardType"/>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="CustomerNumber"/>
+                </Key>
+                <Property Name="Amount" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CCtypeShortDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="CC Type Short Descript." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SalesOrg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sales Org." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CCtypeDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="CC Type Descript." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreditCardType" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Cred Card Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CustomerNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CreditCardFeePercentage" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Percentage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreditCardSurchargeFee" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CC Surcharge Fee" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreditCardGst" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="GST" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <ComplexType Name="NextCRN">
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:label="CR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:label="Session ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="ResetSession">
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:label="CR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:label="Session ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndPoint" Type="Edm.String" Nullable="false" sap:label="End Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsSessionReset" Type="Edm.Boolean" Nullable="false" sap:label="Is Session Reset ?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="GetSecureSession">
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:label="CR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:label="Session ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndPoint" Type="Edm.String" Nullable="false" sap:label="End Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="ResetCVC">
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:label="CR_NUMBER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:label="SESSION_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndPoint" Type="Edm.String" Nullable="false" sap:label="END_POINT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkipCVC" Type="Edm.Boolean" Nullable="false" sap:label="Skip CVC ?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsCVCReset" Type="Edm.Boolean" Nullable="false" sap:label="Is CVC Reset ?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="ResetPAN">
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:label="CR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:label="Session ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndPoint" Type="Edm.String" Nullable="false" sap:label="End Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsPANReset" Type="Edm.Boolean" Nullable="false" sap:label="Is PAN Reset ?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="GetSecureCardDetails">
+                <Property Name="CrNumber" Type="Edm.String" Nullable="false" sap:label="CR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionId" Type="Edm.String" Nullable="false" sap:label="Session ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndPoint" Type="Edm.String" Nullable="false" sap:label="End Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PANMask" Type="Edm.String" Nullable="false" sap:label="PAN_MASK" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PANCount" Type="Edm.Int32" Nullable="false" sap:label="PAN_COUNT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PANLength" Type="Edm.String" Nullable="false" sap:label="PAN_LENGTH" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PANStatus" Type="Edm.String" Nullable="false" sap:label="PAN_STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CVCMask" Type="Edm.String" Nullable="false" sap:label="CVC_MASK" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CVCCount" Type="Edm.Int32" Nullable="false" sap:label="CVC_COUNT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CVCLength" Type="Edm.String" Nullable="false" sap:label="CVC_LENGTH" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CVCStatus" Type="Edm.String" Nullable="false" sap:label="CVC_STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PANType" Type="Edm.String" Nullable="false" sap:label="PAN_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CaptureStatus" Type="Edm.String" Nullable="false" sap:label="CAPTURE_STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="GetAsset">
+                <Property Name="Username" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Asset" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Asset" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <EntityContainer Name="ZPOSITIVE_SECURECO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PurchaseSet" EntityType="ZPOSITIVE_SECURECO_SRV.Purchase" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CreditCardFeeSet" EntityType="ZPOSITIVE_SECURECO_SRV.CreditCardFee" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <FunctionImport Name="GetNextCRN" ReturnType="ZPOSITIVE_SECURECO_SRV.NextCRN" m:HttpMethod="GET"/>
+                <FunctionImport Name="ResetSession" ReturnType="ZPOSITIVE_SECURECO_SRV.ResetSession" m:HttpMethod="POST">
+                    <Parameter Name="CrNumber" Type="Edm.String" Mode="In" MaxLength="100"/>
+                    <Parameter Name="SessionId" Type="Edm.String" Mode="In" MaxLength="100"/>
+                    <Parameter Name="EndPoint" Type="Edm.String" Mode="In" MaxLength="100"/>
+                </FunctionImport>
+                <FunctionImport Name="GetSecureSession" ReturnType="ZPOSITIVE_SECURECO_SRV.GetSecureSession" m:HttpMethod="POST">
+                    <Parameter Name="CrNumber" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="SessionId" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="ResetCVC" ReturnType="ZPOSITIVE_SECURECO_SRV.ResetCVC" m:HttpMethod="POST">
+                    <Parameter Name="CrNumber" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="SessionId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="EndPoint" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="SkipCVC" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="ResetPAN" ReturnType="ZPOSITIVE_SECURECO_SRV.ResetPAN" m:HttpMethod="POST">
+                    <Parameter Name="EndPoint" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="CrNumber" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="SessionId" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="GetSecureCardDetails" ReturnType="ZPOSITIVE_SECURECO_SRV.GetSecureCardDetails" m:HttpMethod="POST">
+                    <Parameter Name="CrNumber" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="SessionId" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="EndPoint" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="GetAsset" ReturnType="ZPOSITIVE_SECURECO_SRV.GetAsset" m:HttpMethod="GET">
+                    <Parameter Name="Username" Type="Edm.String" Mode="In" Nullable="true"/>
+                    <Parameter Name="Plant" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="https://appsapfioride.ap20.hana.ondemand.com:44303/sap/opu/odata/sap/ZPOSITIVE_SECURECO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://appsapfioride.ap20.hana.ondemand.com:44303/sap/opu/odata/sap/ZPOSITIVE_SECURECO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:commons="sap.ui.commons">
+	<Dialog title="{i18n>selectCustomer}">
+		<content>
+			<Toolbar>
+				<SearchField search="onCustomerSearch" maxLength="35" width="100%" value="{cartHeaderModel>/searchVal}"/>
+			</Toolbar>
+			<List id="customerListId" items="{ path: '/CustomerHeaderSet'}" growing="true" growingScrollToLoad="true">
+				<items>
+					<ObjectListItem id="customerListItem" type="Active" press="onCustomerSelect" number="{CustomerId}" class="masterListTileColor"
+						title="{Businessname}">
+						<firstStatus>
+							<ObjectStatus icon="sap-icon://favorite" class="posActiveClubGyprock"
+								visible="{parts:[{path:'ZzclubGyprock'}], formatter:'.formatter.enableActiveClubGyprock'}" state="None"/>
+						</firstStatus>
+						<secondStatus>
+							<ObjectStatus icon="sap-icon://favorite" class="posPotentialClubGyprock"
+								visible="{parts:[{path:'ZzclubGyprock'}], formatter:'.formatter.enablePotentialClubGyprock'}" state="None"/>
+						</secondStatus>
+						<attributes>
+							<ObjectAttribute text="{MobNumber}"/>
+							<ObjectAttribute text="{City1}"/>
+							<ObjectAttribute text="{Firstname} {Lastname}" visible="false"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+			<!--List id="customerListId" width="100%" growingScrollToLoad="true" growing="true" items="{ path: '/CustomerHeaderSet'}">
+				<items>
+					<ObjectListItem id="customerListItem" press="onCustomerSelect" title="{Firstname} {Lastname}"
+						type="Active" class="masterListTileColor">
+						<attributes>
+							<ObjectAttribute text="{CustomerId}" class="masterListAttributeColor"/>
+							<ObjectAttribute text="{MobNumber}" class="masterListAttributeColor"/>
+							<ObjectAttribute text="{City1}" class="masterListAttributeColor sapUiTinyMarginTop"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List-->
+		</content>
+		<buttons>
+			<!--Start of changes in adding new "CLASS-createNewBtnPosPopUp" by C5253525 274868/2018/ePOS order entry screen-duplicated payment -->
+			<Button text="{i18n>createNew}" type="Emphasized" press="addCustomerPressed" class="createNewBtnPosPopUp"/>
+			<!--End of changes in adding new "CLASS-createNewBtnPosPopUp" by C5253525 274868/2018/ePOS order entry screen-duplicated payment -->
+			<Button text="{i18n>cancel}" press="closeCustomerPressed"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

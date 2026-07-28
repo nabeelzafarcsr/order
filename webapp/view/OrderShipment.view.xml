@@ -1,0 +1,329 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="com.csr.order.controller.OrderShipment" xmlns:uxap="sap.uxap" xmlns:html="http://www.w3.org/1999/xhtml" height="100%">
+	<Page busy="{orderShipmentViewModel>/busy}" busyIndicatorDelay="{orderShipmentViewModel>/delay}" title="{i18n>orderShipment}" titleAlignment="Center"
+		class="posOrder" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<Panel class="sapUiDemoFlexBoxSizeAdjustments posOrderShipmentPanel">
+				<FlexBox alignItems="Start">
+					<items>
+						<VBox>
+							<Label text="{parts:[{path:'orderHeaderModel>/netAmount'}], formatter:'.formatter.formatPOSCurrency'}" design="Bold" width="100%"
+								class="sapUiSmallMarginEnd headerCurrency" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<Label text="{i18n>netAmount}" width="100%" class="sapUiSmallMarginEnd" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>plus}" design="Bold" width="100%" class="sapUiSmallMarginEnd specialSign" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="{parts:[{path:'orderHeaderModel>/freightCharges'}], formatter:'.formatter.formatPOSCurrency'}" design="Bold" width="100%"
+								class="sapUiSmallMarginEnd headerCurrency" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<Label text="{i18n>freightCharges}" width="100%" class="sapUiSmallMarginEnd" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>plus}" design="Bold" width="100%" class="sapUiSmallMarginEnd specialSign" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="{parts:[{path:'orderHeaderModel>/taxAmount'}], formatter:'.formatter.formatPOSCurrency'}" design="Bold" width="100%"
+								class="sapUiSmallMarginEnd headerCurrency" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<Label text="{i18n>taxCharges}" width="100%" class="sapUiSmallMarginEnd" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>equal}" design="Bold" width="100%" class="sapUiSmallMarginEnd specialSign" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="{parts:[{path:'orderHeaderModel>/totalAmount'}], formatter:'.formatter.formatPOSCurrency'}" design="Bold" width="100%"
+								class="sapUiSmallMarginEnd headerCurrency" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<Label text="{i18n>totalAmount}" width="100%" class="sapUiSmallMarginEnd" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+						<VBox>
+							<Label text="" design="Bold" width="100%" class="sapUiSmallMarginEnd headerCurrency" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<Label text="" width="100%" class="sapUiSmallMarginEnd" textAlign="End">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Label>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</VBox>
+					</items>
+				</FlexBox>
+			</Panel>
+			<uxap:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" class="posPageLayout">
+				<uxap:sections height="100%">
+					<uxap:ObjectPageSection title="Order Details">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection title=" ">
+								<uxap:blocks>
+									<f:SimpleForm minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0"
+										columnsL="2" columnsM="2" class="posSimpleForm">
+										<f:content>
+											<!--core:Title text=""/-->
+											<Label text="{i18n>customer}" class="posLabel"/>
+											<Text text="{orderHeaderModel>/customer}"/>
+											<Label text="{i18n>shipTo}" class="posLabel"/>
+											<Text text="{orderHeaderModel>/headerShipTo}"/>
+											<Label text="{i18n>requestPickupDate}" class="posLabel"/>
+											<Text text="{parts:[{path:'orderHeaderModel>/requestedDeliveryDate'}], formatter:'.formatter.dateFormatting'}"/>
+											<Label text="{i18n>customerPONo}" class="posLabel"/>
+											<Text text="{orderHeaderModel>/customerPO}"/>
+											<Label text="Weight" class="posLabel"/>
+											<Text text="{parts:[{path:'orderHeaderModel>/weight'},{path:'orderHeaderModel>/weightUnit'}], formatter:'.formatter.formatWeightAndArea'}"/>
+											<Label text="Area" class="posLabelArea"/>
+											<Text text="{parts:[{path:'orderHeaderModel>/area'},{path:'orderHeaderModel>/areaUnit'}], formatter:'.formatter.formatWeightAndArea'}"
+												class="posLabelArea"/>
+											<core:Title text=""/>
+											<Label text="{i18n>orderType}"/>
+											<Text text="{orderHeaderModel>/orderType}"/>
+											<Label text="{i18n>deliveryPlant}"/>
+											<Text text="{orderHeaderModel>/deliveryPlantDesc} ({orderHeaderModel>/deliveryPlantCode})"/>
+											<Label text="Delivery Type" visible="{parts:[{path:'orderHeaderModel>/shippingMode'}], formatter:'.formatter.displayDeliveryItemDetails'}"/>
+											<Text text="{orderHeaderModel>/deliveryType}"
+												visible="{parts:[{path:'orderHeaderModel>/shippingMode'}], formatter:'.formatter.displayDeliveryItemDetails'}"/>
+											<Label text="TATP Status" visible="{parts:[{path:'orderHeaderModel>/shippingMode'}], formatter:'.formatter.displayDeliveryItemDetails'}"/>
+											<HBox visible="{parts:[{path:'orderHeaderModel>/shippingMode'}], formatter:'.formatter.displayDeliveryItemDetails'}">
+												<core:Icon src="sap-icon://status-error" color="#FF0000" tooltip="Not Available"
+													visible="{parts:[{path:'cartHeaderModel>/tatpStatus'}], formatter:'.formatter.displayErrorTATP'}"/>
+												<core:Icon src="sap-icon://status-inactive" color="#FFFF00"
+													visible="{parts:[{path:'cartHeaderModel>/tatpStatus'}], formatter:'.formatter.displayInactiveTATP'}"/>
+												<core:Icon src="sap-icon://status-positive" color="#008000" tooltip="Available"
+													visible="{parts:[{path:'cartHeaderModel>/tatpStatus'}], formatter:'.formatter.displayAvaiableTATP'}"/>
+											</HBox>
+										</f:content>
+									</f:SimpleForm>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="Shipping Address">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection title=" ">
+								<uxap:blocks>
+									<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4"
+										emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" class="posSimpleForm">
+										<f:toolbar>
+											<Toolbar class="posShipmentToolbar">
+												<ToolbarSpacer/>
+												<Button type="Emphasized" text="{i18n>freightRecalculate}" press="OnFreightRecalculate"
+													visible="{orderShipmentViewModel>/isFreightRecalculation}"/>
+												<Button type="Emphasized" text="{i18n>reset}" press="onReset"/>
+											</Toolbar>
+										</f:toolbar>
+										<f:content>
+											<core:Title text=""/>
+											<Label text="{i18n>shipToName}" class="posLabel" required="true"/>
+											<!--Start of commenting by C5253525 #469490-->
+											<!--<Input value="{orderHeaderModel>/shipToName}" change="onShipToChange"-->
+											<!--	showValueStateMessage="{orderShipmentViewModel>/shipToShowValueStateMessage}" valueState="{orderShipmentViewModel>/shipToValueState}"-->
+											<!--	valueStateText="{i18n>invalidShipTo}"/> -->
+											<Input value="{orderHeaderModel>/shipToName}" change="onShipToChange"
+												showValueStateMessage="{orderShipmentViewModel>/shipToShowValueStateMessage}" valueState="{orderShipmentViewModel>/shipToValueState}"
+												valueStateText="{i18n>invalidShipTo}" maxLength="40"/>
+											<!--End of commenting by C5253525 #469490-->
+											<Label text="{i18n>streetAddress}" class="posLabel" required="true"/>
+											<Input value="{orderHeaderModel>/streetAddress}" change="onStreetChange"
+												showValueStateMessage="{orderShipmentViewModel>/streetShowValueStateMessage}" valueState="{orderShipmentViewModel>/streetValueState}"
+												valueStateText="{i18n>invalidStreet}"/>
+											<Label text="{i18n>subrub}" class="posLabel" required="true"/>
+											<!--Select width="100%" id="subrub" selectedKey="{orderHeaderModel>/subrub}">
+											</Select-->
+											<Input id="suburb" showValueHelp="true" showValueStateMessage="{orderShipmentViewModel>/subrubShowValueStateMessage}"
+												change="onSubrubChange" submit="onSubrubSubmit" valueHelpRequest="onSubrubValueHelpRequest"
+												valueState="{orderShipmentViewModel>/subrubValueState}" valueStateText="{i18n>invalidSuburb}" placeholder="{i18n>subrubPlaceholder}"
+												value="{orderHeaderModel>/subrub}" showSuggestion="true"
+												suggestionItems="{path: 'orderShipmentViewModel>/suburbValues',sorter: { path: 'City1' }}">
+												<suggestionItems >
+													<core:Item key="{orderShipmentViewModel>City1}" text="{orderShipmentViewModel>City1}"/>
+												</suggestionItems>
+											</Input>
+											<!--Input valueState="{VModel>/CityValueState}" showSuggestion="true" suggestionItems="{ path: 'cityModel>/city', sorter: { path: 'Value' } }" valueStateText="{VModel>/CityValueStateText}" id="idSuburb"
+										value="{CModel>/city}"  change="onCityChange" valueHelpRequest="onCityValueHelpRequest" showValueHelp="true">
+										<suggestionItems >
+											<core:Item key="{cityModel>Value}" text="{cityModel>Value}"/>
+										</suggestionItems>
+									</Input-->
+											<Label text="{i18n>statePostal}" class="posLabel"/>
+											<Select width="100%" change="onStateChange" enabled="false" selectedKey="{orderHeaderModel>/state}"
+												items="{path: '/GetGenericF4Set', filters: [{path: 'EntityType', operator: 'EQ', value1: 'Customer'},{path: 'PropertyName', operator: 'EQ', value1: 'Region'}]}">
+												<core:Item key="{Key}" text="{Value}"/>
+												<layoutData>
+													<l:GridData span="L4 M5 S5"/>
+												</layoutData>
+											</Select>
+											<Input change="onPostalCodeChange" value="{orderHeaderModel>/postalCode}" editable="false"></Input>
+											<!--C5267297 Mandatory fileds CR enhancements Contact person and Mobile number-->
+											<Label text="{i18n>contactPerson}" class="posLabel" required="{= ${cartHeaderModel>/orderType} === 'YQT' ? true : false}"/>
+											<Input value="{orderHeaderModel>/contactPerson}" showValueStateMessage="{orderShipmentViewModel>/contactPerShowValueStateMessage}" change="onContactPerChange"
+													valueState="{orderShipmentViewModel>/contactPerValueState}" valueStateText="{i18n>invalidcontactPer}"/>
+											<Label text="{i18n>mobileNo}" class="posLabel" required="{= ${cartHeaderModel>/orderType} === 'YQT' ? true : false}"/>
+											<HBox>
+												<Input showValueStateMessage="{orderShipmentViewModel>/mobileNoShowValueStateMessage}" change="onMobileNoChange"
+													liveChange="onMobileNumberLiveChange" valueState="{orderShipmentViewModel>/mobileNoValueState}" valueStateText="{i18n>invalidMobileNo}"
+													placeholder="{i18n>mobileNo}" value="{orderHeaderModel>/mobileNumber}"/>
+											</HBox>
+											<!--MaskInput mask="0999999999" placeholderSymbol="_" placeholder="{i18n>mobileNo}" value="{orderHeaderModel>/cellPhoneNumber}" change="onMobileNoChange"
+												showValueStateMessage="{orderHeaderModel>/mobileNoShowValueStateMessage}"
+												valueState="{orderHeaderModel>/mobileNoValueState}" valueStateText="{i18n>invalidMobileNo}">
+												<layoutData>
+													<l:GridData span="L3 M4 S4"/>
+												</layoutData>
+											</MaskInput-->
+											<HBox
+												visible="{parts:[{path:'orderHeaderModel>/mobileNoShowValueStateMessage'}, {path:'orderHeaderModel>/cellPhoneNumber'}], formatter:'.formatter.displaySMSText'}">
+												<CheckBox selected="true" select="onSMSSelect"/>
+												<Text text="{i18n>sms}"/>
+											</HBox>
+											<core:Title text=""/>
+											<Label text="{i18n>shippingInstruction}" class="posLabel"/>
+											<TextArea value="{orderHeaderModel>/shippingNotes}"></TextArea>
+											<Label text="{i18n>warehouseInstruction}" class="posLabel"/>
+											<TextArea value="{orderHeaderModel>/wareHouseNotes}"></TextArea>
+										</f:content>
+									</f:SimpleForm>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="{i18n>items}">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection title="{i18n>items}">
+								<uxap:blocks>
+									<Table itemPress="onItemPress" items="{cartItemsModel>/ItemSet}" class="orderItemsTable">
+										<headerToolbar>
+											<Toolbar>
+												<Text text="{i18n>items} ({cartItemsModel>/totalItemCount})" class="posTableHeader"/>
+											</Toolbar>
+										</headerToolbar>
+										<columns>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="5rem"><Text text="{i18n>itemNo}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="8rem"><Text text="{i18n>materialNo}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="3rem" hAlign="Center"><Text text="{i18n>quantity}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="3rem" hAlign="Center"><Text text="{i18n>confirmedQuantity}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="8rem" hAlign="Center"><Text text="{i18n>deliveredDate}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="5rem" hAlign="End"><Text text="{i18n>price}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="5rem" hAlign="Center"><Text text="{i18n>discount}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="5rem" hAlign="End"><Text text="{i18n>amount}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="3rem" hAlign="Center"
+												visible="{parts:[{path:'orderHeaderModel>/orderTypeCode'}], formatter:'.formatter.enable3rdParty'}"><Text text="{i18n>3party}"/></Column>
+										</columns>
+										<items>
+											<ColumnListItem type="Navigation" vAlign="Middle">
+												<cells>
+													<Text text="{cartItemsModel>itemID}"/>
+													<VBox>
+														<Text text="{cartItemsModel>materialNo}"/>
+														<Text text="{cartItemsModel>materialDesc}"/>
+													</VBox>
+													<Text text="{parts:[{path:'cartItemsModel>quantity'},{path:'cartItemsModel>stockUnit'}], formatter:'.formatter.formatCartItemQuantity'}"/>
+													<Text
+														text="{parts:[{path:'cartItemsModel>confirmedQuantity'},{path:'cartItemsModel>stockUnit'}], formatter:'.formatter.formatCartItemQuantity'}"/>
+													<!--Commented by C5253525 #110346#107607#10762-->
+													<!--<Text text="{parts:[{path:'cartItemsModel>deliveryDate'}], formatter:'.formatter.dateFormatting'}"/>-->
+													<!--Start of Addition by C5253525 #110346#107607#10762-->
+													<Text text="{path:'cartItemsModel>deliveryDateInputValue'}"/>
+													<!--End of Addition by C5253525 #110346#107607#10762-->
+													<HBox justifyContent="End">
+														<Label text="{parts:[{path:'cartItemsModel>currencyUnit'}], formatter:'.formatter.displayCurrencyUnit'}" class="posCurrency"/>
+														<Text text="{cartItemsModel>unitPrice}"/>
+													</HBox>
+													<Text
+														text="{parts:[{path:'cartItemsModel>discount'},{path:'cartItemsModel>discountType'},{path:'cartItemsModel>unitOfMeasure'}], formatter:'.formatter.formatDiscount'}"/>
+													<HBox justifyContent="End">
+														<Label text="{parts:[{path:'cartItemsModel>currencyUnit'}], formatter:'.formatter.displayCurrencyUnit'}" class="posCurrency"/>
+														<Text text="{parts:[{path:'cartItemsModel>kzwi2'}], formatter:'.formatter.formatCartItemAmount'}"/>
+													</HBox>
+													<CheckBox selected="{cartItemsModel>thirdPartySelected}" editable="false"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+				</uxap:sections>
+			</uxap:ObjectPageLayout>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{parts:[{path:'orderHeaderModel>/orderTypeCode'}], formatter:'.formatter.displayOrderText'}" type="Emphasized"
+					press="handleCreateQuote" visible="{parts:[{path:'orderHeaderModel>/orderTypeCode'}], formatter:'.formatter.isCreateQuoteVisible'}"/>
+				<Button text="{i18n>payment}" type="Emphasized" press="handlePayment" enabled="{orderShipmentViewModel>/isPaymentEnable}"
+					visible="{parts:[{path:'orderHeaderModel>/orderTypeCode'},{path:'cartHeaderModel>/customerPaymentTerm'}], formatter:'.formatter.isPaymentVisible'}"/>
+				<Button text="{i18n>saveOrder}" type="Emphasized" press="handleSaveOrder"
+					visible="{parts:[{path:'orderHeaderModel>/orderTypeCode'},{path:'cartHeaderModel>/customerPaymentTerm'}], formatter:'.formatter.isSaveOrderVisible'}"/>
+				<Button text="{i18n>cancel}" type="Reject" press="handleCancel" visible="true"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

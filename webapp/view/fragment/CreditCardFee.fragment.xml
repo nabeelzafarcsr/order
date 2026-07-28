@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox>
+		<MessageStrip text="Please select a card type to proceed." type="Information" showIcon="true" class="sapUiNoMargin"
+			visible="{= !${creditCardModel>/cardTypeSelected} }"/>
+		<f:SimpleForm id="amountForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="true">
+			<f:content>
+				<HBox class="main-container">
+					<VBox class="payment-options-container" visible="{creditCardModel>/IsCreditCardFeeActive}">
+						<Label text="Select Payment Card Type:" visible="{creditCardModel>/IsCreditCardFeeActive}"/>
+						<VBox class="payment-options-list">
+							<HBox class="payment-option">
+								<RadioButton id="EFTPOS" text="EFTPOS" select="onCardTypeChange" visible="{creditCardModel>/isPinPad}"/>
+							</HBox>
+							<HBox class="payment-option">
+								<RadioButton id="MASTERCARD" text="MasterCard" select="onCardTypeChange" enabled="{/cardTypeEnabled}"/>
+								<Image src="{imageModel>/mastercardIcon}" class="payment-image"/>
+							</HBox>
+							<HBox class="payment-option">
+								<RadioButton id="MC-DEBIT" text="MasterCard Debit" select="onCardTypeChange" enabled="{/cardTypeEnabled}"/>
+							</HBox>
+							<HBox class="payment-option">
+								<RadioButton id="VISA" text="Visa" select="onCardTypeChange" enabled="{/cardTypeEnabled}"/>
+								<Image src="{imageModel>/visaIcon}" class="payment-image"/>
+							</HBox>
+							<HBox class="payment-option">
+								<RadioButton id="VS-DEBIT" text="Visa Debit" select="onCardTypeChange" enabled="{/cardTypeEnabled}"/>
+							</HBox>
+							<HBox class="payment-option" visible="{creditCardModel>/isAMEXAllowed}">
+								<RadioButton id="AMEX" text="American Express" select="onCardTypeChange" enabled="{/cardTypeEnabled}"/>
+								<Image src="{imageModel>/amexIcon}" class="payment-image"/>
+							</HBox>
+						</VBox>
+					</VBox>
+					<HBox class="input-option">
+						<Label text="Amount(in $): " visible="{= !${creditCardModel>/IsCreditCardFeeActive} }" class="sapUiSmallMarginEnd"/>
+						<Input id="amountInput" value="{creditCardModel>/amount}" change="onAmountChange" enabled="{/amountInputenabled}" visible="{= !${creditCardModel>/IsCreditCardFeeActive} }"/>
+					</HBox>
+					<VBox class="info-box">
+						<Label text="Payment Information:" visible="{creditCardModel>/IsCreditCardFeeActive}"/>
+						<VBox class="form-elements">
+							<HBox alignItems="End">
+								<Text text="Amount (in $): " visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+								<Text text="{creditCardModel>/amount}" visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+							</HBox>
+							<HBox alignItems="End">
+								<Text text="Credit Card Fee (in %): " visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+								<Text text="{creditCardModel>/cardPercentage}" visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+							</HBox>
+							<HBox alignItems="End">
+								<Text text="Credit Card Fee (in $): " visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+								<Text id="feeInput" text="{creditCardModel>/fee}" visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+							</HBox>
+							<HBox alignItems="End">
+								<Text text="Total Amount (in $): " visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+								<Text id="totalAmountInput" text="{creditCardModel>/totalAmount}" visible="{creditCardModel>/IsCreditCardFeeActive}" class="sapUiSmallMarginEnd"/>
+							</HBox>
+						</VBox>
+					</VBox>
+				</HBox>
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

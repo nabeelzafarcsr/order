@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="CreditCardFeeDialog" title="Credit Card Select" contentWidth="40%" draggable="true">
+		<core:Fragment fragmentName="com.csr.order.view.fragment.CreditCardFee" type="XML"/>
+		
+	</Dialog>
+</core:FragmentDefinition>

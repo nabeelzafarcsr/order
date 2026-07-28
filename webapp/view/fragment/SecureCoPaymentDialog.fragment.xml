@@ -1,0 +1,162 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="SecureCoPaymentDialog" title="{i18n>secureCoPaymentTitle}" contentWidth="40%" draggable="true" class="no-gap-dialog">
+		<Wizard id="secureCoPaymentWizard" navigation="false" showNextButton="false" renderMode="Scroll">
+			<WizardStep id="amountStep" title="Amount" activate="onActivateAmountStep">
+				<content>
+					<core:Fragment id="CreditCardFeeFragment" fragmentName="com.csr.order.view.fragment.CreditCardFee" type="XML"/>
+					<Toolbar class="noBorderToolbar">
+						<Button id="initiateSecureModeButton" text="Initiate Secure Mode" press="onInitiateSecureModePress"
+							enabled="{/initiateSecureModeButtonenabled}"/>
+					</Toolbar>
+				</content>
+			</WizardStep>
+			<WizardStep id="generateSecureSessionStep" title="Secure Session">
+				<content>
+					<VBox>
+						<MessageStrip text="Click on Check Secure Mode button to verify if call is secure." type="Information" showIcon="true" class="sapUiNoMargin"/>
+						<MessageStrip id="secureSessionErrorStrip" showIcon="true" type="Error" visible="{/secureSessionErrorStripvisible}"/>
+						<f:SimpleForm id="secureSessionForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="CR Number"/>
+								<Text text="{/prefixedCRNumber}"/>
+								<!--<Label text="Session ID"/>-->
+								<!--<Text text="{/SessionId}"/>-->
+								<Label text="Amount(in $)" visible="{= !${/IsCreditCardFeeActive} }"/>
+								<Text text="{/amount}" visible="{= !${/IsCreditCardFeeActive} }"/>
+								<!--<Label text="Credit Card Fee(in $)"/>-->
+								<!--<Text text="{/fee}"/>-->
+								<Label text="Total Amount(in $)" visible="{/IsCreditCardFeeActive}"/>
+								<Text text="{/totalAmount}" visible="{/IsCreditCardFeeActive}"/>
+							</f:content>
+						</f:SimpleForm>
+						<!--<Text id="instructionText"-->
+						<!--	text="Instruction text 1: Please click on ' Check Secure Mode' to ensure the call is secure.\nYour CR Number is {/CRNumber}.\nStep 2: Click on ' Check Secure Mode' to ensure the call is secure.\nYour payment amount is {/totalAmount}."/>-->
+					</VBox>
+					<Toolbar class="noBorderToolbar">
+						<Button id="checkSecureModeButton" text="Check Secure Mode" press="onCheckSecureModePress" enabled="{/checkSecureModeButtonenabled}"/>
+						<Button id="copyCallIdButton" text="Copy Call Id" press="onCopyCallIdPress" enabled="{/copyCallIdButtonenabled}"/>
+					</Toolbar>
+				</content>
+			</WizardStep>
+			<WizardStep id="cardInfoStep" title="Card Information">
+				<content>
+					<VBox>
+						<MessageStrip text="Customer to enter their Credit Card no. followed by #. Click Check Card Status." type="Information" showIcon="true"
+							class="sapUiNoMargin"/>
+						<MessageStrip text="{/cardTypeChangedMessage}" type="Information" showIcon="true"
+							class="sapUiNoMargin" visible="{/resetCCInfoErrorVisible}"/>
+						<MessageStrip id="cardInfoErrorStrip" type="Error" showIcon="true" visible="{/cardInfoErrorStripvisible}"/>
+						<f:SimpleForm id="cardInfoForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+							adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="Card Type" visible="{/IsCreditCardFeeActive}"/>
+								<Text text="{/cardType}" visible="{/IsCreditCardFeeActive}"/>
+								<Label text="Amount(in $)" visible="{= !${/IsCreditCardFeeActive} }"/>
+								<Text text="{/amount}" visible="{= !${/IsCreditCardFeeActive} }"/>
+								<!--<Label text="Credit Card Fee(in $)"/>-->
+								<!--<Text text="{/fee}"/>-->
+								<Label text="Total Amount(in $)" visible="{/IsCreditCardFeeActive}"/>
+								<Text text="{/totalAmount}" visible="{/IsCreditCardFeeActive}"/>
+								<!--<Label text="Card Number"/>-->
+								<!--<Input id="cardNumberInput" value="{path: '/cardNumber', type: 'sap.ui.model.type.String'}" maxLength="19" placeholder="xxxx xxxx xxxx xxxx"-->
+								<!--	type="Tel" change="onCardNumberChange"/>-->
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+					<Toolbar class="noBorderToolbar">
+						<Button id="checkCardInfoButton" text="Check Card Status" press="onCheckCardInfoPress" enabled="{/checkCardInfoButtonenabled}"/>
+						<!--<Button id="resetCardInfoButton" text="Reset Card Status" press="onResetCardInfoPress" enabled="true"/>-->
+					</Toolbar>
+				</content>
+			</WizardStep>
+			<WizardStep id="cvcDetailsStep" title="CVC Details">
+				<content>
+					<VBox>
+						<MessageStrip text="Customer to enter their CVC no followed by #. Click Check CVC Status." type="Information" showIcon="true"
+							class="sapUiNoMargin"/>
+						<MessageStrip id="cvcInfoErrorStrip" type="Error" showIcon="true" visible="{/cvcInfoErrorStripvisible}"/>
+						<f:SimpleForm id="cvcDetailsForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="Card Type"/>
+								<Text text="{/cardType}"/>
+								<Label text="Card Number"/>
+								<Text text="{/cardNumber}"/>
+								<!--<Label text="Enter CVC Number"/>-->
+								<!--<Input id="cvcNumberInput" value="{path: '/cvcNumber', type: 'sap.ui.model.type.String'}" maxLength="4" placeholder="XXX" type="Tel"-->
+								<!--	change="onCvcNumberChange"/>-->
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+				</content>
+				<Toolbar class="noBorderToolbar">
+					<Button id="checkCvcStatusButton" text="Check CVC Status" press="onCheckCvcStatusPress" enabled="{/checkCvcStatusButtonenabled}"/>
+					<Button id="resetCardButton" text="Reset Card" press="onResetCardPress" enabled="{/resetCardButtonenabled}"/>
+					<Button text="Reset CVC" press="onResetCvcPress" enabled="{/resetCVCButtonenabled}"/>
+					<!--<Button id="resetCvcButton" text="Reset CVC" press="onResetCvcPress" enabled="true"/>-->
+				</Toolbar>
+			</WizardStep>
+			<WizardStep id="additionalCardDetailsStep" title="Additional Card Details">
+				<content>
+					<VBox>
+						<MessageStrip text="Customer to provide following card details for the agent to enter manually" type="Information" showIcon="true"
+							class="sapUiNoMargin"/>
+						<MessageStrip id="additionalCardDetailsErrorStrip" type="Error" showIcon="true" visible="{/additionalCardDetailsErrorStripvisible}"/>
+						<f:SimpleForm id="additionalCardDetailsForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="Amount(in $)" visible="{= !${/IsCreditCardFeeActive} }"/>
+								<Text text="{/amount}" visible="{= !${/IsCreditCardFeeActive} }"/>
+								<Label text="Credit Card Fee(in $)" visible="{/IsCreditCardFeeActive}"/>
+								<Text text="{/fee}" visible="{/IsCreditCardFeeActive}"/>
+								<Label text="Total Amount(in $)" visible="{/IsCreditCardFeeActive}"/>
+								<Text text="{/totalAmount}" visible="{/IsCreditCardFeeActive}"/>
+								<Label text="Card Type"/>
+								<Text text="{/cardType}"/>
+								<Label text="Card Number"/>
+								<Text text="{/cardNumber}"/>
+								<Label text="CVC Number"/>
+								<Text text="{/cvcNumber}"/>
+								<Label text="Expiration Date"/>
+								<HBox>
+									<Input id="expirationMonthInput" value="{path: '/expirationMonth', type: 'sap.ui.model.type.String'}" maxLength="2" placeholder="MM"
+										type="Number" change="onExpirationMonthChange" required="true" liveChange="validateExpirationMonth"/>
+									<!--<Input id="expirationMonthInput" value="{path: '/expirationMonth', type: 'sap.ui.model.type.String'}" maxLength="2" placeholder="MM"-->
+									<!--	type="Number" required="true"/>-->
+									<!--<Input id="expirationYearInput" value="{path: '/expirationYear', type: 'sap.ui.model.type.String'}" maxLength="4" placeholder="YYYY"-->
+									<!--	type="Number" required="true"/>-->
+									<Input id="expirationYearInput" value="{path: '/expirationYear', type: 'sap.ui.model.type.String'}" maxLength="4" placeholder="YYYY"
+										type="Number" change="onExpirationYearChange" required="true" liveChange="validateExpirationYear"/>
+								</HBox>
+								<Label text="Cardholder Name"/>
+								<HBox>
+									<Input id="firstNameInput" value="{path: '/firstName', type: 'sap.ui.model.type.String'}" placeholder="First Name"
+										change="onFirstNameChange" required="true" liveChange="validateFirstName"/>
+									<Input id="lastNameInput" value="{path: '/lastName', type: 'sap.ui.model.type.String'}" placeholder="Last Name" change="onLastNameChange"
+										required="true" liveChange="validateLastName"/>
+								</HBox>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+					<Toolbar class="noBorderToolbar">
+						<!--<Button text="Check Card Status" press="onCheckAdditionalStatusPress" enabled="true"/>-->
+						<!--<Button text="Reset Card" press="onResetCardPress" enabled="true"/>-->
+						<Button text="Submit Payment" press="onSubmitPayment" enabled="{/submitPaymentenabled}"/>
+						<!--<Button text="Reset CVC" press="onResetCvcPress" enabled="{/resetCVCButtonenabled}"/>-->
+					</Toolbar>
+				</content>
+			</WizardStep>
+		</Wizard>
+		<beginButton>
+			<Button id="cancelSessionButton" text="Reset Session" press="onCancelSessionPress" enabled="{/resetSession}"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="onClose"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

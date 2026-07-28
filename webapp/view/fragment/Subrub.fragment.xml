@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:commons="sap.ui.commons">
+	<SelectDialog id="subrubList" title="{i18n>selectSuburb}"
+		noDataText="{i18n>noSubrubsFound}"
+		search="onSubrubSearch"
+		confirm="onSubrubSelect"
+		cancel="closeSubrubPressed"
+		multiSelect="false"
+		items="{ path: '/GetSuburbSet'}" >
+		
+		<ObjectListItem press="onSubrubSelect" title="{City1}"
+			type="Active" class="masterListTileColor">
+			<attributes>
+				<ObjectAttribute text="{Region}" class="masterListAttributeColor"/>
+				<ObjectAttribute text="{PostCode1}" class="masterListAttributeColor"/>
+			</attributes>
+		</ObjectListItem>
+	</SelectDialog>
+</core:FragmentDefinition>

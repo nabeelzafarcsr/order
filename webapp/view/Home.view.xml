@@ -1,0 +1,12 @@
+<mvc:View controllerName="com.csr.order.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" displayBlock="true" xmlns="sap.m">
+	<SplitContainer busy="{serviceCallModel>/busySetupDialog}"  defaultTransitionNameMaster="show" initialMaster="CatalogueView" id="salesOrderSplit" initialDetail="CartView"
+		mode="{posSplitApp>/mode}" class="posMSplitContainerMaster">
+		<detailPages>
+			<mvc:XMLView id="CartView" viewName="com.csr.order.view.Cart"/>
+		</detailPages>
+		<masterPages>
+			<mvc:XMLView id="CatalogueView" viewName="com.csr.order.view.Catalogue"/>
+		</masterPages>
+	</SplitContainer>
+</mvc:View>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Popover showHeader="true" title="{i18n>addToCart}" initialFocus="orderedQty" placement="Vertical" class="sapUiContentPadding" 
+		afterClose="addToCartBeforeClose">
+		<VBox>
+			<!--Label text="{i18n>quantity}"/-->
+			<Input type="Number"  textAlign="End" change="onCartQuantityChange" submit="onProductOrderQtySubmit" value="{catalogueViewModel>/orderedQty}" 
+			showValueStateMessage="{catalogueViewModel>/quantityShowValueStateMessage}"
+			valueState="{catalogueViewModel>/quantityValueState}" valueStateText="{i18n>quantityFieldCheck}" placeholder="{i18n>quantity}"></Input>
+			<!--Label text="{i18n>discount}" class="sapUiTinyMarginTop"/-->
+			<HBox>
+				<Input type="Number" submit="onProductDiscountSubmit" value="{catalogueViewModel>/discount}" width="8rem" placeholder="{i18n>discount}"/>
+				<Select class="sapUiTinyMarginBegin" selectedKey="{catalogueViewModel>/discountType}">
+					<core:Item key="%" text="%"></core:Item>
+					<core:Item key="AUD" text="$"></core:Item>
+				</Select>
+			</HBox>
+		</VBox>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button type="Default" press="handleAddToCartOK" text="{i18n>ok}"/>
+				<Button type="Default" press="handleAddToCartCancel" text="{i18n>cancel}"/>
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

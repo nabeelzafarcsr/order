@@ -1,0 +1,270 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:layout="sap.ui.layout" controllerName="com.csr.order.controller.Cart"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page busy="{cartViewModel>/busy}" busyIndicatorDelay="{cartViewModel>/delay}" showHeader="false" class="posOrder">
+		<content>
+			<!--Panel class="sapUiDemoFlexBoxSizeAdjustments posOrderShipmentPanel">
+				<HBox justifyContent="Center">
+					<Label text="{i18n>totalProductValue}{cartHeaderModel>/productValue}" design="Bold" width="100%" class="sapUiSmallMarginEnd headerCurrency" textAlign="End"/>
+				</HBox>
+			</Panel-->
+			<uxap:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" class="posPageLayout">
+				<uxap:headerTitle>
+					<uxap:ObjectPageHeader class="posCartProductValue" objectTitle="{i18n>totalProductValue}{cartHeaderModel>/productValue}"></uxap:ObjectPageHeader>
+				</uxap:headerTitle>
+				<uxap:headerContent class="posHeader">
+					<Button id="toggleScreen" icon="{cartViewModel>/icon}" tooltip="{cartViewModel>/tooltip}" type="Transparent" press="onToggleScreen"
+						class="posFullScreenButton"/>
+				</uxap:headerContent>
+				<uxap:sections>
+					<uxap:ObjectPageSection title="{i18n>orderHeader}">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection title=" " mode="Expanded">
+								<uxap:blocks>
+									<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4"
+										emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" class="posSimpleForm">
+										<f:content>
+											<core:Title text=""/>
+											<Label text="{i18n>customer}" class="posLabel"/>
+											<HBox>
+												<Text text="{cartHeaderModel>/customerID} - {cartHeaderModel>/businessName}"/>
+												<Button type="Transparent" class="sapUiSmallMarginBegin" icon="sap-icon://customer" press="openCustomerList"/>
+											</HBox>
+											<Label text="" class="posLabel"/>
+											<HBox>
+												<core:Icon src="sap-icon://money-bills" class="posCoreIcon sapUiTinyMarginEnd" color="#FF0000"
+													visible="{parts:[{path:'cartHeaderModel>/customerPaymentTerm'}], formatter:'.formatter.enableCashCustomer'}"
+													tooltip="{i18n>toolTipCashCustomer}"/>
+												<core:Icon src="sap-icon://cancel" class="posCoreIcon sapUiTinyMarginEnd" color="#0070B1"
+													visible="{path:'cartHeaderModel>/CreditBlock',formatter:'.formatter.enableCreditBlock'}" tooltip="{i18n>toolTipCreditBlock}"/>
+												<core:Icon src="sap-icon://favorite" class="posCoreIcon sapUiTinyMarginEnd" color="#FF0000"
+													visible="{parts:[{path:'cartHeaderModel>/customerClubGyprock'}], formatter:'.formatter.enableActiveClubGyprock'}"
+													tooltip="{i18n>toolTipActiveClubGyprock}"/>
+												<core:Icon src="sap-icon://favorite" class="posCoreIcon sapUiTinyMarginEnd" color="#0070B1"
+													visible="{parts:[{path:'cartHeaderModel>/customerClubGyprock'}], formatter:'.formatter.enablePotentialClubGyprock'}"
+													tooltip="{i18n>toolTipPotentialClubGyprock}"/>
+												<!--<core:Icon src="sap-icon://simple-payment" class="posCoreIcon sapUiTinyMarginEnd" color="#0070B1"
+													visible="{parts:[{path:'cartHeaderModel>/customerBilling'}], formatter:'.formatter.enableBillingButton'}" tooltip="{i18n>toolTipBilling}"/>-->
+												<!--	<core:Icon src="sap-icon://shipping-status" class="posCoreIcon sapUiTinyMarginEnd" color="#0070B1"
+													visible="{parts:[{path:'cartHeaderModel>/customerDelivery'}], formatter:'.formatter.enableDeliveryButton'}" tooltip="{i18n>toolTipDelivery}"/>-->
+											</HBox>
+											<Label text="{i18n>shipTo}" class="posLabel"/>
+											<Select id="shipToList" width="100%" selectedKey="{cartHeaderModel>/shipTo}" change="onShipToChange"></Select>
+											<Label text="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayTextRequestDate'}" class="posLabel" required="true"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayRequestDate'}"/>
+											<!-- Added by i327900 #79220 valueFormat="dd/MM/yyyy" Commented by C5253525 #110346#107607#10762-->
+											<!--<DatePicker displayFormat="dd/MM/YYYY"  change="onChangeRequestPickupDate" value="{cartHeaderModel>/requestPickUpValue}"-->
+											<!--	dateValue="{cartHeaderModel>/requestedPickupDate}" showValueStateMessage="{cartHeaderModel>requestedPickupDateShowValueStateMessage}"-->
+											<!--	valueState="{cartHeaderModel>/requestedPickupDateValueState}" valueStateText="{cartViewModel>/valueStateText/requestedPickupDate}"-->
+											<!--	enabled="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.enableRequestDate'}"-->
+											<!--	visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayRequestDate'}"/>-->
+											<!--Start of Addition by C5253525 #110346#107607#10762-->
+											<DatePicker displayFormat="dd/MM/YYYY" valueFormat="dd/MM/yyyy" change="onChangeRequestPickupDate"
+												value="{cartHeaderModel>/requestPickUpValue}" dateValue="{cartHeaderModel>/requestedPickupDate}"
+												showValueStateMessage="{cartHeaderModel>requestedPickupDateShowValueStateMessage}"
+												valueState="{cartHeaderModel>/requestedPickupDateValueState}" valueStateText="{cartViewModel>/valueStateText/requestedPickupDate}"
+												enabled="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.enableRequestDate'}"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayRequestDate'}"/>
+											<!--End of Addition by C5253525 #110346#107607#10762-->
+											<Label text="{i18n>quoteStartDate}" class="posLabel" required="true"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayQuoteDate'}"/>
+											<DatePicker displayFormat="dd/MM/YYYY" change="validateQuoteStartDate" dateValue="{cartHeaderModel>/quoteStartDate}"
+												showValueStateMessage="{cartViewModel>/showValueStateMessage/quoteStartDate}" valueState="{cartViewModel>/valueState/quoteStartDate}"
+												valueStateText="{cartViewModel>/valueStateText/quoteStartDate}"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayQuoteDate'}" enabled="false"/>
+											<Label text="{i18n>quoteEndDate}" class="posLabel" required="true"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayQuoteDate'}"/>
+											<DatePicker displayFormat="dd/MM/YYYY" change="validateQuoteEndDate" value="{cartHeaderModel>/quoteEndDateInputValue}"
+												dateValue="{cartHeaderModel>/quoteEndDate}" showValueStateMessage="{cartViewModel>/showValueStateMessage/quoteEndDate}"
+												valueState="{cartViewModel>/valueState/quoteEndDate}" valueStateText="{cartViewModel>/valueStateText/quoteEndDate}"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayQuoteDate'}"/>
+											<Label text="{i18n>customerPONo}" class="posLabel"
+												required="{parts:[{path:'cartHeaderModel>/purchaseOrderRequired'}], formatter:'.formatter.displayRequiredCustomerPO'}"/>
+											<!--Start of changes by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+											<Input change="validateCustomerPO" value="{cartHeaderModel>/customerPO}" maxLength='35'
+												showValueStateMessage="{cartViewModel>/showValueStateMessage/customerPO}" valueState="{cartViewModel>/valueState/customerPO}"
+												valueStateText="{cartViewModel>/valueStateText/customerPO}"/>
+											<!--End of changes by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+											<!--Start of commenting by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+											<!--<Input change="validateCustomerPO" value="{cartHeaderModel>/customerPO}"-->
+											<!--showValueStateMessage="{cartViewModel>/showValueStateMessage/customerPO}" valueState="{cartViewModel>/valueState/customerPO}"-->
+											<!--valueStateText="{cartViewModel>/valueStateText/customerPO}"/>-->
+											<!--End of commenting by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+											<Label text="{i18n>paymentTerms}" class="posLabel"/>
+											<ComboBox width="100%" change="validatePaymentTerm" selectedKey="{cartHeaderModel>/customerPaymentTerm}"
+												selectionChange="onPaymentTermSelect" editable="false" showValueStateMessage="{cartViewModel>/showValueStateMessage/paymentTerm}"
+												valueState="{cartViewModel>/valueState/paymentTerm}" valueStateText="{i18n>invalidPaymentTerm}"
+												items="{path: '/GetGenericF4Set', filters: [{path: 'EntityType', operator: 'EQ', value1: 'Header'},{path: 'PropertyName', operator: 'EQ', value1: 'PaymentTermCode'}]}">
+												<core:Item key="{Key}" text="{Value}"/>
+											</ComboBox>
+											<Label text="{i18n>customerNotes}" class="posLabel"/>
+											<TextArea value="{cartHeaderModel>/customerNotes}"></TextArea>
+											<core:Title text=""/>
+											<Label text="{i18n>orderType}" required="true"/>
+											<Select width="100%" change="onOrderTypeChange" selectedKey="{cartHeaderModel>/orderType}"
+												items="{path: '/GetGenericF4Set', filters: [{path: 'EntityType', operator: 'EQ', value1: 'Header'},{path: 'PropertyName', operator: 'EQ', value1: 'SalesOrderTypeCode'}]}">
+												<core:Item key="{Key}" text="{Value}"/>
+											</Select>
+											<Label class="posLabel" text="{i18n>deliveryPlant}" required="true"/>
+											<ComboBox width="100%" change="onDeliveryPlantChange" selectedKey="{cartHeaderModel>/deliveryPlant}" selectionChange="onDeliveryPlantSelect"
+												editable="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayDeliveryPlant'}"
+												showValueStateMessage="{cartViewModel>/showValueStateMessage/deliveryPlant}" valueState="{cartViewModel>/valueState/deliveryPlant}"
+												valueStateText="{i18n>mandatoryField}"
+												items="{path: '/GetGenericF4Set', filters: [{path: 'EntityType', operator: 'EQ', value1: 'Header'},{path: 'PropertyName', operator: 'EQ', value1: 'DeliveryPlant'}], length: 1000}">
+												<core:Item key="{Key}" text="{Value} ({Key})"/>
+											</ComboBox>
+											<Label class="posLabel" text="{i18n>printPickList}"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayOrderItem'}"/>
+											<CheckBox selected="{cartHeaderModel>/printPickList}"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.displayOrderItem'}"/>
+											<Label class="posLabel" text="{i18n>shippingMode}"/>
+											<HBox class="posPickup" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.immediateOrderItem'}">
+												<SegmentedButton width="100%" select="onShippingTabSelect" selectedKey="{cartHeaderModel>/shippingMode}">
+													<items>
+														<SegmentedButtonItem id="segBtnDefaultShippingMode" key="pickup" icon="sap-icon://car-rental" press="onPickup"/>
+													</items>
+												</SegmentedButton>
+											</HBox>
+											<HBox class="posShippingHox" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.shippingModeDisplay'}">
+												<SegmentedButton width="100%" selectedKey="{cartHeaderModel>/shippingMode}">
+													<items>
+														<SegmentedButtonItem id="segBtnPickup" key="pickup" icon="sap-icon://car-rental" press="onPickup"/>
+														<SegmentedButtonItem id="segBtnDelivery" key="delivery" icon="sap-icon://shipping-status" press="onDelivery"/>
+													</items>
+												</SegmentedButton>
+											</HBox>
+											<core:Fragment id="deliveryDetails" fragmentName="com.csr.order.view.fragment.Delivery" type="XML"/>
+										</f:content>
+									</f:SimpleForm>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="{i18n>items}">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection title=" " mode="Expanded">
+								<uxap:blocks>
+									<Table itemPress="onItemPress" items="{cartItemsModel>/ItemSet}" class="cartItemsTable" id="cartItemsTable">
+										<headerToolbar>
+											<Toolbar>
+												<Text text="{i18n>items} ({cartItemsModel>/totalItemCount})" class="posTableHeader"/>
+												<ToolbarSpacer></ToolbarSpacer>
+												<Button tooltip="{i18n>addItemTooltip}" icon="sap-icon://add" press="onAddNewItem"/>
+											</Toolbar>
+										</headerToolbar>
+										<columns>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="12%" hAlign="Begin"><Text text="{i18n>materialNo}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="12%" hAlign="Center"><Text text="{i18n>quantity}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="9%" hAlign="Center"
+												visible="{parts:[{path:'posSplitApp>/mode'},{path:'device>/orientation/landscape'}], formatter:'.formatter.displayItemText'}"><Text text="{i18n>confirmedQuantity}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="15%" hAlign="Center"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.enableField'}"><Text text="{i18n>deliveryDate}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="10%" hAlign="Center"><Text text="{i18n>price}/ {i18n>unitPrice}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="auto" hAlign="Center"
+												visible="{parts:[{path:'posSplitApp>/mode'},{path:'device>/orientation/landscape'}], formatter:'.formatter.displayItemText'}"><Text text="{i18n>discount}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="8%" hAlign="End"><Text text="{i18n>amount}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="6%" hAlign="Center"
+												visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.enable3rdParty'}"><Text text="{i18n>3party}"/></Column>
+											<Column minScreenWidth="Desktop" demandPopin="true" width="4%" hAlign="End"></Column>
+										</columns>
+										<items>
+											<ColumnListItem type="Navigation" vAlign="Top">
+												<cells>
+													<VBox>
+														<!--commented  by i327900 #607288-->
+														<!--<Input showValueHelp="true"  valueHelpRequest="onMaterialValueHelpTapped" value="{cartItemsModel>materialNo}" submit="onMaterialSubmit"-->
+														<!--	editable="{parts:[{path:'cartItemsModel>materialDesc'}], formatter:'.formatter.isMaterialEditable'}" id="materialDescInp"/>-->
+														<!--addition of change="onInputChange" by i327900 #607288-->
+														<Input showValueHelp="true" change="onInputChange" valueHelpRequest="onMaterialValueHelpTapped" value="{cartItemsModel>materialNo}"
+															submit="onMaterialSubmit" editable="{parts:[{path:'cartItemsModel>materialDesc'}], formatter:'.formatter.isMaterialEditable'}"
+															id="materialDescInp"/>
+														<BusyIndicator class="posBusyText" text="ATP Check In Progress"
+															visible="{parts:[{path:'cartItemsModel>busy'}], formatter:'.formatter.isItemBusy'}"/>
+														<Text text="{cartItemsModel>materialDesc}"
+															visible="{parts:[{path:'cartItemsModel>materialType'}], formatter:'.formatter.isItemEligibleForDisplay'}"/>
+														<Input value="{cartItemsModel>materialDesc}" submit="onMaterialDescSubmit"
+															visible="{parts:[{path:'cartItemsModel>materialType'}], formatter:'.formatter.isItemEligibleForEdit'}"/>
+													</VBox>
+													<Input type="Number" textAlign="End" change="onQuantityChange" submit="onQuantitySubmit" description="{cartItemsModel>stockUnit}"
+														fieldWidth="60%" value="{cartItemsModel>quantity}" showValueStateMessage="{cartItemsModel>quantityShowValueStateMessage}"
+														enabled="{parts:[{path:'cartItemsModel>isQuantityDisable'}], formatter:'.formatter.isQuantityEnabled'}"
+														valueState="{cartItemsModel>quantityValueState}" valueStateText="{i18n>quantityFieldCheck}"/>
+													<HBox justifyContent="Center" class="sapUiSmallMarginTop">
+														<Text
+															text="{parts:[{path:'cartItemsModel>confirmedQuantity'},{path:'cartItemsModel>stockUnit'}], formatter:'.formatter.formatCartItemQuantity'}"
+															visible="{parts:[{path:'posSplitApp>/mode'},{path:'device>/orientation/landscape'},{path:'cartItemsModel>confirmedQuantity'}], formatter:'.formatter.displayConfirmedQuantityValue'}"/>
+														<core:Icon src="sap-icon://alert" color="#FF0000" class="sapUiTinyMarginBegin"
+															visible="{parts:[{path:'cartItemsModel>quantity'},{path:'cartItemsModel>confirmedQuantity'}], formatter:'.formatter.displayAlertIcon'}"/>
+													</HBox>
+													<!-- Commented by i327900 #79220 -->
+													<!--<DatePicker  displayFormat="dd/MM/YYYY"  value="{cartItemsModel>deliveryDateInputValue}"-->
+													<!--	showValueStateMessage="{cartItemsModel>deliveryDateShowValueStateMessage}" change="onDeliveryDateChange"-->
+													<!--	valueState="{cartItemsModel>deliveryDateValueState}" valueStateText="{i18n>deliveryDateFieldCheck}"-->
+													<!--	dateValue="{cartItemsModel>deliveryDate}" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.enableField'}"/>-->
+													<!-- Added by i327900 #79220 valueFormat="dd/MM/yyyy"-->
+													<!--Start of Addition by C5253525 #110346#107607#10762-->
+													<DatePicker displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{cartItemsModel>deliveryDateInputValue}"
+														showValueStateMessage="{cartItemsModel>deliveryDateShowValueStateMessage}" change="onDeliveryDateChange"
+														valueState="{cartItemsModel>deliveryDateValueState}" valueStateText="{i18n>deliveryDateFieldCheck}"
+														dateValue="{cartItemsModel>deliveryDate}" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.enableField'}"/>
+													<!--End of Addition by C5253525 #110346#107607#10762-->
+													<VBox>
+														<HBox class="sapUiSmallMarginTop" justifyContent="Center">
+															<Label text="{parts:[{path:'cartItemsModel>currencyUnit'}], formatter:'.formatter.displayCurrencyUnit'}" design="Bold"/>
+															<Text text="{cartItemsModel>unitPrice}" class="posCurrency"/>
+														</HBox>
+														<HBox justifyContent="Center">
+															<Text text="{cartItemsModel>salesUnitPrice}"
+																visible="{parts:[{path:'cartItemsModel>materialType'}], formatter:'.formatter.isItemEligibleForDisplay'}"/>
+															<Label text="{cartItemsModel>salesUnit}" design="Bold" class="sapUiTinyMarginBegin"
+																visible="{parts:[{path:'cartItemsModel>materialType'}], formatter:'.formatter.isItemEligibleForDisplay'}"/>
+															<Input type="Number" textAlign="End" value="{cartItemsModel>salesUnitPrice}" submit="onSalesUnitSubmit"
+																visible="{parts:[{path:'cartItemsModel>materialType'}], formatter:'.formatter.isItemEligibleForEdit'}"
+																description="{cartItemsModel>salesUnit}" fieldWidth="60%"/>
+														</HBox>
+													</VBox>
+													<HBox visible="{parts:[{path:'posSplitApp>/mode'},{path:'device>/orientation/landscape'}], formatter:'.formatter.displayItemText'}">
+														<Input type="Number" textAlign="End" submit="onDiscountSubmit" value="{cartItemsModel>discount}" change="onDiscountChange"/>
+														<Select class="sapUiTinyMarginBegin posDiscount" selectedKey="{cartItemsModel>discountType}" change="onDiscountTypeChange">
+															<core:Item key="%" text="%"></core:Item>
+															<core:Item key="AUD" text="$"></core:Item>
+														</Select>
+														<Select items="{cartItemsModel>salesUnitList}" class="sapUiTinyMarginBegin posDiscount"
+															enabled="{parts:[{path:'cartItemsModel>salesUnitList'},{path:'cartItemsModel>discountType'}], formatter:'.formatter.displaySalesUnitList'}"
+															selectedKey="{cartItemsModel>unitOfMeasure}" change="onUnitOfMeasureChange">
+															<core:Item text="{cartItemsModel>salesUnitType}" key="{cartItemsModel>salesUnitType}"/>
+														</Select>
+													</HBox>
+													<HBox class="sapUiSmallMarginTop" justifyContent="End">
+														<Label text="{parts:[{path:'cartItemsModel>currencyUnit'}], formatter:'.formatter.displayCurrencyUnit'}" design="Bold" class="posCurrency"/>
+														<Text text="{parts:[{path:'cartItemsModel>kzwi2'}], formatter:'.formatter.formatCartItemAmount'}"/>
+													</HBox>
+													<CheckBox select="on3rdPartySelect" selected="{cartItemsModel>thirdPartySelected}"/>
+													<Button icon="sap-icon://delete" type="Transparent" class="posDeleteButton posButtonRed" press="onItemDelete"
+														visible="{parts:[{path:'cartItemsModel>materialDesc'}], formatter:'.formatter.displayValue'}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+				</uxap:sections>
+			</uxap:ObjectPageLayout>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<!--Start of changes by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+				<Button text="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.checkOutText'}" type="Emphasized" press="handleCheckout"
+					visible="true" enabled="{parts:[{path:'cartHeaderModel>/CreditBlock'}], formatter:'.formatter.displayCheckoutButton'}" id="checkoutBtn"/>
+				<!--End of changes by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+				<!--Start of commenting by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+				<!--<Button text="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.checkOutText'}" type="Emphasized" press="handleCheckout"-->
+				<!--	visible="true" id="checkoutBtn"/>-->
+				<!--Start of commenting by C5253525 274868/2018/ePOS order entry screen-duplicated payment-->
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

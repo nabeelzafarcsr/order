@@ -1,0 +1,113 @@
+{
+    "resources": [
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/Cart.controller.js"
+        },
+        {
+            "name": "controller/Catalogue.controller.js"
+        },
+        {
+            "name": "controller/Home.controller.js"
+        },
+        {
+            "name": "controller/OrderScheduleLines.controller.js"
+        },
+        {
+            "name": "controller/OrderShipment.controller.js"
+        },
+        {
+            "name": "controller/Payment.controller.js"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "customcontrols/CardNumberInput.js"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "images/amexIcon.png"
+        },
+        {
+            "name": "images/csrCompanyLogo.png"
+        },
+        {
+            "name": "images/mastercardIcon.png"
+        },
+        {
+            "name": "images/visaIcon.png"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "util/OrderServiceUtil.js"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/Cart.view.xml"
+        },
+        {
+            "name": "view/Catalogue.view.xml"
+        },
+        {
+            "name": "view/Home.view.xml"
+        },
+        {
+            "name": "view/OrderScheduleLines.view.xml"
+        },
+        {
+            "name": "view/OrderShipment.view.xml"
+        },
+        {
+            "name": "view/Payment.view.xml"
+        },
+        {
+            "name": "view/fragment/AddProductToCart.fragment.xml"
+        },
+        {
+            "name": "view/fragment/CCDialog.fragment.xml"
+        },
+        {
+            "name": "view/fragment/CreditCardFee.fragment.xml"
+        },
+        {
+            "name": "view/fragment/Customer.fragment.xml"
+        },
+        {
+            "name": "view/fragment/Delivery.fragment.xml"
+        },
+        {
+            "name": "view/fragment/MaterialValueHelp.fragment.xml"
+        },
+        {
+            "name": "view/fragment/SecureCoPaymentDialog.fragment.xml"
+        },
+        {
+            "name": "view/fragment/Subrub.fragment.xml"
+        }
+    ]
+}

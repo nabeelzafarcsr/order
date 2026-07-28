@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:commons="sap.ui.commons">
+	<Label text="{i18n>deliveryType}" visible="{parts:[{path:'cartHeaderModel>/orderType'},{path:'cartHeaderModel>/isDelivery'}], formatter:'.formatter.deliveryTypeItem'}"/>
+	<!--C5267297 - 112289- Insetred Id for delivery type-->
+	<Select id="dlvType" width="100%" change="onDeliveryTypeChange" visible="{parts:[{path:'cartHeaderModel>/orderType'},{path:'cartHeaderModel>/isDelivery'}], formatter:'.formatter.deliveryTypeItem'}"
+		selectedKey="{cartHeaderModel>/deliveryType}"
+		items="{path: '/GetGenericF4Set', filters: [{path: 'EntityType', operator: 'EQ', value1: 'Header'},{path: 'PropertyName', operator: 'EQ', value1: 'ZdelvType'}]}">
+		<core:Item key="{Key}" text="{Value}"/>
+	</Select>
+	<Label text="{i18n>timeSlot}" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.timeSlotDisplay'}"/>
+	<Select id="timeSlot" change="onTimeSlotChange" width="100%" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.timeSlotDisplay'}"
+		selectedKey="{cartHeaderModel>/timeSlot}">
+	</Select>
+	
+	<Label text="{i18n>truckType}" visible="{parts:[{path:'cartHeaderModel>/orderType'},{path:'cartHeaderModel>/isDelivery'}], formatter:'.formatter.truckTypeDisplay'}"/>
+	<Select id="vechicleType" change="onVechicleTypeChange" width="100%" visible="{parts:[{path:'cartHeaderModel>/orderType'},{path:'cartHeaderModel>/isDelivery'}], formatter:'.formatter.truckTypeDisplay'}"
+		selectedKey="{cartHeaderModel>/vechicleType}">
+	</Select>
+	<Label text="{i18n>tatpStatus}" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.tatpStatusDisplay'}"/>
+	<FlexBox alignItems="Start" visible="{parts:[{path:'cartHeaderModel>/orderType'}], formatter:'.formatter.tatpStatusDisplay'}">
+		<items>
+			<HBox>
+				<Button icon="sap-icon://status-error" enabled="true" type="Transparent" class="posTATPActiveRed" tooltip="Not Available" visible="{parts:[{path:'cartHeaderModel>/tatpStatus'}], formatter:'.formatter.displayErrorTATP'}"/>
+				<Button icon="sap-icon://status-inactive" type="Transparent" class="posTATPActiveYellow" visible="{parts:[{path:'cartHeaderModel>/tatpStatus'}], formatter:'.formatter.displayInactiveTATP'}"/>
+				<Button icon="sap-icon://status-positive" type="Transparent" class="posTATPActiveGreen" tooltip="Available" visible="{parts:[{path:'cartHeaderModel>/tatpStatus'}], formatter:'.formatter.displayAvaiableTATP'}"/>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</HBox>
+			<HBox justifyContent="End">
+				<Button icon="sap-icon://check-availability" type="Transparent" class="posButton" press="onCheckTATPStatus"/>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</HBox>
+		</items>
+	</FlexBox>
+</core:FragmentDefinition>

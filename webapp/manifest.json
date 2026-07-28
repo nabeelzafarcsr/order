@@ -1,0 +1,287 @@
+{
+  "_version": "1.4.0",
+  "sap.app": {
+    "id": "com.csr.order",
+    "type": "application",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": [
+        ""
+      ],
+      "fallbackLocale": ""
+    },
+    "applicationVersion": {
+      "version": "436.0.0"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "sap/opu/odata/sap/ZPOSITIVE_ORDER_SRV_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZPOSITIVE_BPOINT_SRV_SRV": {
+        "uri": "sap/opu/odata/sap/ZPOSITIVE_BPOINT_SRV_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/ZPOSITIVE_BPOINT_SRV_SRV/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZPOSITIVE_SECURECO_SRV": {
+        "uri": "sap/opu/odata/sap/ZPOSITIVE_SECURECO_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/ZPOSITIVE_SECURECO_SRV/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZPOSITIVE_UTILITY_SRV_SRV": {
+        "uri": "sap/opu/odata/sap/ZPOSITIVE_UTILITY_SRV_SRV/", 
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/ZPOSITIVE_UTILITY_SRV_SRV/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "sourceTemplate": {
+      "id": "servicecatalog.connectivityComponentForManifest",
+      "version": "0.0.0",
+      "toolsId": "2bd57a7e-7fc3-4ad6-bcf1-69e9a5f1e720"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "order-Display": {
+          "semanticObject": "order",
+          "action": "Display",
+          "title": "{{order-Display.flpTitle}}",
+          "icon": "sap-icon://add",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "supportedThemes": [
+      "sap_hcb",
+      "sap_belize"
+    ],
+    "fullWidth": true
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "com.csr.order.view.App",
+      "type": "XML",
+      "controlAggregation": "pages",
+      "controlId": "idAppControl"
+    },
+    "dependencies": {
+      "minUI5Version": "1.71.76",
+      "libs": {
+        "sap.ui.core": {
+          "minVersion": "1.71.72"
+        },
+        "sap.m": {
+          "minVersion": "1.71.72"
+        },
+        "sap.ui.layout": {
+          "minVersion": "1.71.72"
+        },
+        "sap.uxap": {
+          "minVersion": "1.71.72"
+        },
+        "sap.ushell": {
+          "minVersion": "1.71.69"
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.csr.order.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
+          "fallbackLocale": ""
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "settings": {
+          "metadataUrlParams": {
+            "sap-documentation": "heading"
+          }
+        },
+        "preload": true
+      },
+      "authKey": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "OneWay",
+          "defaultCountMode": "Request"
+        },
+        "dataSource": "ZPOSITIVE_BPOINT_SRV_SRV",
+        "preload": true
+      },
+      "secureCo": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "OneWay",
+          "defaultCountMode": "Request"
+        },
+        "dataSource": "ZPOSITIVE_SECURECO_SRV",
+        "preload": true
+      },
+      "positiveutil": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "OneWay",
+          "defaultCountMode": "Request"
+        },
+        "dataSource": "ZPOSITIVE_UTILITY_SRV_SRV",
+        "preload": true
+      },
+      "ZPOSITIVE_BPOINT_SRV_SRV": {
+        "dataSource": "ZPOSITIVE_BPOINT_SRV_SRV",
+        "preload": true,
+        "settings": {}
+      },
+      "ZPOSITIVE_SECURECO_SRV": {
+        "dataSource": "ZPOSITIVE_SECURECO_SRV",
+        "preload": true,
+        "settings": {}
+      },
+      "ZPOSITIVE_UTILITY_SRV_SRV": {
+        "dataSource": "ZPOSITIVE_UTILITY_SRV_SRV",
+        "preload": true,
+        "settings": {}
+      }
+    },
+  "resourceRoots": {
+      "com.csr.order": "./"
+    },
+
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "viewPath": "com.csr.order.view",
+        "viewType": "XML",
+        "controlId": "idAppControl",
+        "controlAggregation": "pages"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "Home",
+          "target": [
+            "home"
+          ],
+          "controlAggregation": "pages",
+          "controlId": "idAppControl"
+        },
+        {
+          "pattern": "OrderShipment",
+          "name": "OrderShipment",
+          "target": [
+            "orderShipment"
+          ],
+          "controlAggregation": "pages",
+          "controlId": "idAppControl"
+        },
+        {
+          "pattern": "OrderScheduleLines/{itemIndex},{context}",
+          "name": "OrderScheduleLines",
+          "target": [
+            "orderScheduleLines"
+          ],
+          "controlAggregation": "pages",
+          "controlId": "idAppControl"
+        },
+        {
+          "pattern": "Payment",
+          "name": "Payment",
+          "target": [
+            "payment"
+          ],
+          "controlAggregation": "pages",
+          "controlId": "idAppControl"
+        }
+      ],
+      "targets": {
+        "home": {
+          "viewName": "Home",
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "controlId": "idAppControl",
+          "clearControlAggregation": true
+        },
+        "orderShipment": {
+          "viewName": "OrderShipment",
+          "viewType": "XML",
+          "controlId": "idAppControl",
+          "clearControlAggregation": true
+        },
+        "orderScheduleLines": {
+          "viewName": "OrderScheduleLines",
+          "viewType": "XML",
+          "controlId": "idAppControl",
+          "clearControlAggregation": true
+        },
+        "payment": {
+          "viewName": "Payment",
+          "viewType": "XML",
+          "controlId": "idAppControl",
+          "clearControlAggregation": true
+        }
+      }
+    }
+  },
+  "sap.platform.hcp": {
+    "uri": "",
+    "_version": "1.1.0"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comcsrorder"
+  }
+}

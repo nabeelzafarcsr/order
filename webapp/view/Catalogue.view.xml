@@ -1,0 +1,56 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.csr.order.controller.Catalogue"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="catalogue" showHeader="false" busy="{splitContainerBusyModel>/busy}" busyIndicatorDelay="{splitContainerBusyModel>/delay}">
+		<subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<SearchField search="onCatalogueSearch" width="100%" value="{catalogueModel>/searchVal}"
+						showRefreshButton="{= !${device>/support/touch} }"></SearchField>
+				</contentMiddle>
+				<!--contentRight>
+					<Button icon="sap-icon://customer" press="openCustomerList"/>
+				</contentRight-->
+			</Bar>
+		</subHeader>
+		<SegmentedButton width="100%" select="onCatalogueTabSelect" selectedKey="{i18n>products}">
+			<items>
+				<SegmentedButtonItem key="{i18n>products}" text="{i18n>products}"/>
+				<SegmentedButtonItem key="{i18n>orders}" text="{i18n>orders}" press="onOrderPress"/>
+			</items>
+		</SegmentedButton>
+		<List id="listProducts" visible="{catalogueModel>/isProductListVisible}" selectionChange="onProductItemPress" updateFinished="onProductUpdateFinished" growingScrollToLoad="true"
+			growing="true" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" noDataText="{i18n>noProdcutsDataText}"
+			busyIndicatorDelay="{catalogueViewModel>/delay}" items="{path: 'catalogueViewModel>/ProductLSet'}">
+			<items>
+				<ObjectListItem id="product" title="{Description}" press="onProductItemPress" numberUnit=""
+					number="" type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" icon="{parts:[{path:'Matnr'}], formatter:'.formatter.productImage'}" class="masterListTileColor">
+					<firstStatus>
+						<ObjectStatus icon="sap-icon://waiver" class="posPromotionalProduct"
+							visible="{parts:[{path:'IsPromotion'}], formatter:'.formatter.isPromotionalProduct'}"/>
+					</firstStatus>
+					<secondStatus>
+						<ObjectStatus text="{i18n>3party}" visible="{parts:[{path:'Is3rdParty'}], formatter:'.formatter.isThirdPartyProduct'}" class="posPromotionalProduct"/>
+					</secondStatus>
+					<attributes>
+						<ObjectAttribute text="{Matnr}"/>
+						<ObjectAttribute text="{Bismt}"/>
+						<ObjectAttribute text="{parts:[{path:'StockQuantity'},{path:'StockUnit'}], formatter:'.formatter.formatProductStock'}" class="posProductStock"/>
+					</attributes>
+				</ObjectListItem>
+			</items>
+		</List>
+		<List id="listOrders" visible="{catalogueModel>/isOrderListVisible}" selectionChange="onOrderChange" updateFinished="onOrderUpdateFinished" growingScrollToLoad="true"
+			growing="true" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" noDataText="{i18n>noOrdersDataText}"
+			busyIndicatorDelay="{catalogueViewModel>/delay}" items="{path: 'catalogueViewModel>/HeaderSet'}">
+			<items>
+				<ObjectListItem title="{SalesOrderTypeCode} {SalesOrderID}" numberUnit=""
+					number="" type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" class="masterListTileColor">
+					<attributes>
+						<ObjectAttribute text="{parts:[{path:'CreatedOnDate'}], formatter:'.formatter.dateFormatting'}"/>
+						<ObjectAttribute press="onAddToCartOrders" text="{parts:[{path:'SalesOrderTypeCode'}], formatter:'.formatter.formatAddToCartText'}" class="posAddToCartText" active="true"/>
+					</attributes>
+				</ObjectListItem>
+			</items>
+		</List>
+	</Page>
+</mvc:View>

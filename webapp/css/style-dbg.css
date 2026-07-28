@@ -1,0 +1,332 @@
+div.posMSplitContainerMaster > div.sapMSplitContainerMaster {
+   float: right !important;
+   width: 260px !important;
+}
+
+.posLabel {
+	white-space: normal !important;
+}
+
+.posLabelArea {
+	white-space: normal !important;
+	visibility:hidden;
+}
+
+div.posSimpleForm  h5.sapUiFormTitleH5 {
+	height: 0rem !important;
+}
+
+.posFullScreenButton {
+	margin-right: 0rem !important;
+	float: right !important;
+}
+
+div.posPageLayout div.sapUxAPObjectPageHeaderContent {
+	padding-left: 0rem !important;
+}
+
+div.sapUxAPObjectPageHeaderContentItem {
+	margin-bottom: 0rem !important;
+	line-height: 3rem !important;
+}
+.masterListTileColor .sapMTextLineClamp{
+    color: #0070B1 !important;
+}
+
+.masterListAttributeColor .sapMText{
+    color: #666666 !important;
+}
+
+.posButton .sapMBtnIcon {
+	font-size: 2rem !important;
+	padding-right: 0.5rem !important;
+}
+
+.posDeleteButton .sapMBtnIcon {
+	font-size: 1.5rem !important;
+	padding-right: 0.5rem !important;
+}
+.posButtonRed .sapMBtnIcon {
+	color: #FF0000 !important;
+	opacity: 0.6 !important;
+}
+
+.posButtonFavorite .sapMBtnIcon {
+	color: #FF0000 !important;
+}
+
+.posButtonHalfFavorite .sapMBtnIcon {
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: red;
+    background: -webkit-gradient(linear, left top, right top, from(rgb(255, 0, 0)), color-stop(50%, rgb(255, 0, 0)), color-stop(50%, rgb(255, 255, 255)), to(rgb(255, 255, 255))); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.posButtonBlue .sapMBtnIcon {
+	color: #0070B1 !important;
+}
+
+.posTATPActiveRed .sapMBtnIcon {
+	color: #FF0000 !important;
+}
+
+.posTATPInActiveRed .sapMBtnIcon {
+	color: #FF0000 !important;
+	opacity: 0.6 !important;
+}
+
+.posTATPActiveYellow .sapMBtnIcon {
+	color: #FFFF00 !important;
+}
+
+.posTATPInActiveYellow .sapMBtnIcon {
+	color: #FFFF00 !important;
+	opacity: 0.6 !important;
+
+}
+
+.posTATPActiveGreen .sapMBtnIcon {
+	color: #008000 !important;
+}
+
+.posTATPInActiveGreen .sapMBtnIcon {
+	color: #008000 !important;
+	opacity: 0.6 !important;
+}
+
+.posIcon .sapUiIcon {
+	font-size: 2rem !important;
+	color: #FF0000 !important;
+	opacity: 0.6 !important;
+}
+
+div.sapMFlexItem > button.posDeclineButton {
+	right: 40px !important;
+	width: 0px !important;
+}
+
+.posProductStock {
+	text-align: right !important;
+}
+
+.posProductStock .sapMText {
+	color: #FF0000 !important;	
+	font-size: 1rem !important;
+    font-weight: bold !important;
+    padding-right: 0.25rem !important;
+}
+
+.headerCurrency {
+	font-size: 1rem !important;
+}
+
+.specialSign {
+	font-size: 2.5rem !important;
+}
+
+.posOrder > section {
+	overflow-y: hidden !important;
+}
+
+.orderItemsTable, .cartItemsTable {
+	padding-bottom: 10rem !important;
+}
+
+.orderItemsTable .sapMLIBImgNav {
+	font-size: 1.5rem !important;
+}
+
+.cartItemsTable .sapMLIBImgNav {
+	width: 0px !important;
+}
+
+.cartItemsTable .sapMListTblNavCol {
+	width: 0px !important;
+	visibility: hidden !important;
+}
+.posAddToCartText {
+	text-align: right !important;
+}
+
+.posAddToCartText > span.sapMText {
+	color: #FF0000 !important;
+}
+.posShippingHox > .sapMFlexItem {
+	width: 12rem !important;
+}
+
+.posPickup > .sapMFlexItem {
+	width: 6rem !important;
+}
+
+.posTableHeader {
+	font-size: 1.25rem !important;
+}
+.posCurrency {
+	margin-right: 0.25rem !important;
+}
+
+.posShipmentToolbar {
+	border-bottom-width: 0px !important;
+}
+
+.posCoreIcon {
+	font-size: 2rem !important;
+}
+
+/*.posPotentialClubGyprock {
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: red;
+    background: -webkit-gradient(linear, left top, right top, from(rgb(255, 0, 0)), color-stop(50%, rgb(255, 0, 0)), color-stop(50%, rgb(255, 255, 255)), to(rgb(255, 255, 255))); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}*/
+
+.posPromotionalProduct {
+	color: green !important;	
+}
+
+.posPromotionalProduct>.sapMObjStatusIcon>.sapUiIcon {
+	font-size: 2rem !important;
+}
+
+.posCardNumber>.sapMFlexItem {
+	margin-right: 0.5rem !important;
+}
+.posPaymentForm {
+	padding-top: 0rem !important;
+	background-color: white !important;
+	padding-bottom: 2rem !important;
+}
+
+.posPaymentForm  h5.sapUiFormTitleH5 {
+	height: 0rem !important;
+}
+
+.posPaymentPageContent > section {
+	padding-bottom: 5rem !important;
+}
+.posEmailReceipt > .sapMFlexItem:nth-child(2n) {
+	width: 90% !important;
+}
+.posDiscount>.sapMSelectList {
+	min-width: 4rem !important;
+}
+
+.posActiveClubGyprock > span > span {
+    color: #FF0000 !important;
+    font-size: 1.7rem !important;
+}
+
+.posPotentialClubGyprock > span > span {
+    color: #0070B1 !important;
+    font-size: 1.7rem !important;
+}
+/*.posOrderShipmentPanel  .posOrderShipmentPanel > .sapMHBox {
+	height: 1rem !important;
+}*/
+/*.orderItemsTable .sapMListTblHasNav {
+	display: none !important;
+}*/
+.posCartProductValue > .sapUxAPObjectPageHeaderIdentifier {
+	background-color: #FAFAFA !important;
+	height: 4rem !important;
+	text-align: center !important;
+}
+
+.posCartProductValue h1.sapUxAPObjectPageHeaderIdentifierTitle {
+	font-size: 1rem !important;
+}
+
+.posBusyText .sapMLabel {
+	font-size: 0.5rem !important;
+}
+/*Start of addition  by C5253525 274868/2018/ePOS order entry screen-duplicated payment*/
+.createNewBtnPosPopUp.sapMBarChild.sapMBtn.sapMBtnBase.sapMBtnInverted{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top:0px;
+}
+/*End of addition  by C5253525 274868/2018/ePOS order entry screen-duplicated payment*/
+/*Start of addition for PCI Payment Complaince*/
+.noBorderToolbar {
+    border-bottom: none !important;
+}/* Enter your custom styles here */
+/* CSS */
+#SecureCoPaymentDialog.no-gap-dialog {
+  padding-bottom: 0;
+}
+#SecureCoPaymentDialog.no-gap-dialog .sapUiDlgCnt {
+  padding-bottom: 0;
+}
+#SecureCoPaymentDialog.no-gap-dialog .sapUiDlgFtr {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.sapMSelectListItemIcon {
+    width: 24px;  /* Adjust the size of the icon */
+    height: 24px;
+}
+.payment-options-container {
+    width: 45%; /* Adjust based on your layout */
+}
+
+.payment-options-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.payment-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px; /* Adds space between the radio buttons and images */
+}
+
+.payment-option {
+    display: flex;
+    align-items: center; /* Align the radio button, text, and image vertically */
+}
+
+.input-option {
+	align-items: center;
+}
+
+.payment-image {
+    width: 32px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Space between text and image */
+    object-fit: contain; /* Ensures image doesn't get distorted */
+}
+
+.payment-options-list {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.main-container {
+	flex-grow: 1;
+    justify-content: space-between; /* Space out the left and right sections */
+    align-items: flex-start; /* Aligns items at the top */
+    width: 100%;
+}
+
+.info-box {
+	flex-grow: 1;
+	justify-content: space-between;
+}
+
+.form-elements {
+	padding: 10px;
+}
+
+.bottom-align .sapMText {
+    align-self: flex-end; /* Align Text elements to the bottom */
+}
+
+
+/*End of addition for PCI Payment Complaince*/
