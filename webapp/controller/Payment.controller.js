@@ -965,7 +965,7 @@ sap.ui.define([
 			var currency = orderHeaderModel.getProperty("/currency");
 			var incoTerms1 = orderHeaderModel.getProperty("/incoTerms1");
 			var salesOrderType = orderHeaderModel.getProperty("/orderTypeCode");
-			var assestID = isSecureCoGetVbeln || isSecureCoAfterSubmit ? this._getAssetSelectedOrDefault() : oViewModel.getProperty("/assestID");
+			var assestID = this._getAssetSelectedOrDefault();
 			var totalAmount = oViewModel.getProperty("/totalAmount");
 			var vbeln = secureCoViewModel ? !!secureCoViewModel.getProperty("/vbeln") ? secureCoViewModel.getProperty("/vbeln") : oViewModel.getProperty(
 				"/vbeln") : oViewModel.getProperty("/vbeln");
