@@ -1933,12 +1933,22 @@ sap.ui.define([
 			oWizard.setCurrentStep(oWizard.getSteps()[0]);
 		},
 
+		_scrollStepIntoView: function (oStep) {
+			setTimeout(function () {
+				if (oStep && oStep.getDomRef()) {
+					oStep.getDomRef().scrollIntoView({ behavior: "smooth", block: "start" });
+				}
+			}, 100);
+		},
+
 		_displayStep2: function () {
 			console.log("Displaying step 2");
 			var oDialog = this._oDialog;
 			var oWizard = oDialog.getContent()[0]; // Get Wizard
+			var oStep = oWizard.getSteps()[1];
 			oWizard.getSteps()[0].setVisible(false); // Hide Step 1
-			oWizard.setCurrentStep(oWizard.getSteps()[1]);
+			oWizard.setCurrentStep(oStep);
+			this._scrollStepIntoView(oStep);
 			this.getView().getModel("secureCo").setProperty("/initiateSecureModeButtonenabled", false);
 			this.getView().getModel("secureCo").setProperty("/secureSessionErrorStripvisible", false);
 			this.getView().getModel("secureCo").setProperty("/cardTypeEnabled", false);
@@ -1949,8 +1959,10 @@ sap.ui.define([
 			console.log("Displaying step 3");
 			var oDialog = this._oDialog;
 			var oWizard = oDialog.getContent()[0]; // Get Wizard
+			var oStep = oWizard.getSteps()[2];
 			oWizard.getSteps()[1].setVisible(false); // Hide Step 1
-			oWizard.setCurrentStep(oWizard.getSteps()[2]);
+			oWizard.setCurrentStep(oStep);
+			this._scrollStepIntoView(oStep);
 			this.getView().getModel("secureCo").setProperty("/checkSecureModeButtonenabled", false);
 			this.getView().getModel("secureCo").setProperty("/copyCallIdButtonenabled", false);
 			this.getView().getModel("secureCo").setProperty("/cardTypeSelectenabled", false);
@@ -1964,8 +1976,10 @@ sap.ui.define([
 			console.log("Displaying step 4");
 			var oDialog = this._oDialog;
 			var oWizard = oDialog.getContent()[0]; // Get Wizard
+			var oStep = oWizard.getSteps()[3];
 			oWizard.getSteps()[2].setVisible(false); // Hide Step 1
-			oWizard.setCurrentStep(oWizard.getSteps()[3]);
+			oWizard.setCurrentStep(oStep);
+			this._scrollStepIntoView(oStep);
 			this.getView().getModel("secureCo").setProperty("/checkCardInfoButtonenabled", false);
 			this.getView().getModel("secureCo").setProperty("/cvcInfoErrorStripvisible", false);
 			// sap.ui.getCore().byId("resetCardInfoButton").setEnabled(false);
@@ -1975,8 +1989,10 @@ sap.ui.define([
 			console.log("Displaying step 5");
 			var oDialog = this._oDialog;
 			var oWizard = oDialog.getContent()[0]; // Get Wizard
+			var oStep = oWizard.getSteps()[4];
 			oWizard.getSteps()[3].setVisible(false); // Hide Step 1
-			oWizard.setCurrentStep(oWizard.getSteps()[4]);
+			oWizard.setCurrentStep(oStep);
+			this._scrollStepIntoView(oStep);
 			this.getView().getModel("secureCo").setProperty("/checkCvcStatusButtonenabled", false);
 			this.getView().getModel("secureCo").setProperty("/resetCardButtonenabled", false);
 			this.getView().getModel("secureCo").setProperty("/resetCVCButtonenabled", false);
